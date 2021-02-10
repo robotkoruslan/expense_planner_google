@@ -6,6 +6,7 @@ import './screens/splash_screen.dart';
 import './providers/transactions.dart';
 import './screens/transaction_overview_screen.dart';
 import './screens/auth_screen.dart';
+import 'providers/auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
             value: Auth(),
           ),
           ChangeNotifierProxyProvider<Auth, Transactions>(
+            create: (_) => Transactions('', '', []),
             update: (ctx, auth, previousTransactions) => Transactions(
                 auth.token,
                 auth.userId,
