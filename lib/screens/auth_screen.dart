@@ -1,5 +1,7 @@
 import 'dart:math';
 
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
@@ -184,9 +186,9 @@ class _AuthCardState extends State<AuthCard> {
       ),
       elevation: 8.0,
       child: Container(
-        height: _authMode == AuthMode.Signup ? 480 : 380,
+        height: _authMode == AuthMode.Signup ? 380 : 280,
         constraints:
-            BoxConstraints(minHeight: _authMode == AuthMode.Signup ? 480 : 380),
+            BoxConstraints(minHeight: _authMode == AuthMode.Signup ? 380 : 280),
         width: deviceSize.width * 0.75,
         padding: EdgeInsets.all(10.0),
         child: Form(
@@ -241,33 +243,25 @@ class _AuthCardState extends State<AuthCard> {
                 if (_isLoading)
                   CircularProgressIndicator()
                 else
-                  ElevatedButton(
+                  RaisedButton(
                     child:
                         Text(_authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP'),
                     onPressed: _submit,
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                      primary: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).primaryTextTheme.button.color,
                   ),
-                TextButton(
+                FlatButton(
                   child: Text(
                       '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD'),
                   onPressed: _switchAuthMode,
-                  style: TextButton.styleFrom(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-                    primary: Theme.of(context).primaryColor,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  // child: Text(
-                  //     '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD'),
-                  // onPressed: _switchAuthMode,
-
-                  // padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
-                  // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  // textColor: Theme.of(context).primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  textColor: Theme.of(context).primaryColor,
                 ),
                 Divider(
                   color: Colors.black,
